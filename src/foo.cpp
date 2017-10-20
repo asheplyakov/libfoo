@@ -11,3 +11,8 @@ void X::bar(int x) {
 	m_x += x;
 }
 
+const std::string& C::name() const {
+	static const std::string s_name("C");
+	return s_name;
+}
+

@@ -8,6 +8,17 @@ public:
 	virtual ~A();
 };
 
+class B {
+public:
+	virtual ~B() { }
+	virtual const std::string& name() const = 0;
+};
+
+class C : public B {
+public:
+	virtual const std::string& name() const override;
+};
+
 class X : public A {
 	int m_x;
 public:
