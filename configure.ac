@@ -1,0 +1,17 @@
+AC_INIT([libfoo], 0.0.1)
+AC_PREREQ(2.59)
+AC_CONFIG_SRCDIR(src/foo.cpp)
+AC_CONFIG_AUX_DIR(config)
+AC_CONFIG_HEADERS([config/config.h])
+AC_CONFIG_MACRO_DIR(m4)
+AM_INIT_AUTOMAKE([foreign subdir-objects])
+
+AC_PROG_CXX
+AC_PROG_INSTALL
+AM_PROG_LIBTOOL
+
+AC_CONFIG_FILES([
+Makefile
+])
+AC_OUTPUT
+

@@ -1,0 +1,13 @@
+*.o
+bin/*
+lib/*
+.o/*.o
+.libs/*
+autom4te.cache/*
+Makefile.in
+configure
+aclocal.m4
+config/*
+m4/*
+build/*
+.*.sw[opn]
