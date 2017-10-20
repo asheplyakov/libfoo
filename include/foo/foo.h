@@ -23,6 +23,7 @@ class X : public A {
 	int m_x;
 public:
 	explicit X(int x): m_x{x} { }
+	virtual const std::string& name() const;
 	virtual void foo(const std::string& s) override;
 	virtual void bar(int i) override;
 };
