@@ -19,7 +19,7 @@ public:
 	virtual const std::string& name() const override;
 };
 
-class X : public A, public B {
+class X : public B, public A {
 	int m_x;
 public:
 	explicit X(int x): m_x{x} { }
