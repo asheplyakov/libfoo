@@ -16,3 +16,7 @@ const std::string& C::name() const {
 	return s_name;
 }
 
+const std::string& X::name() const {
+	static const std::string s_name("X");
+	return s_name;
+}
