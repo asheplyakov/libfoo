@@ -1,0 +1,66 @@
+
+SONAME := libfoo.so.0
+REVISION := 0
+PATCHLEVEL := 0
+
+# Dynamical Shared Object, AKA shared library
+# libfoo.so.0.0.0
+DSO := lib/$(SONAME).$(REVISION).$(PATCHLEVEL) 
+
+# for the run time linker (/lib64/ld-linux-x86-64.so.2):
+# libfoo.so.0 symlink to the aboive
+SOLINK = lib/$(SONAME)
+
+# for the compile time linker (/usr/bin/ld):
+# g++ -L/path/to/libdir -lfoo
+# symlink to the actual DSO
+DEVLIB := lib/libfoo.so
+
+SRC := src/foo.cpp
+HDRS := include/foo/foo.h
+OBJ := $(SRC:src/%.cpp=.o/%.o)
+
+PROG := bin/fooclient
+
+vpath += src
+
+CXXFLAGS += -std=c++11 -g -O2
+INCLUDES += -Iinclude
+
+all: $(DSO) $(DEVLIB) $(SOLINK) $(PROG)
+
+lib: $(DSO) $(DEVLIB) $(SOLINK)
+
+prog: $(PROG)
+
+# only position independent code is allowed in DSOs
+$(OBJ): .o/%.o: src/%.cpp $(HDRS) GNUMakefile
+	@mkdir -p "$(dir $@)"
+	$(CXX) $(INCLUDES) $(CXXFLAGS) -fPIC -DPIC -c $< -o $@
+
+# The real stuff happens here
+$(DSO): $(OBJ) GNUMakefile
+	@mkdir -p "$(dir $@)"
+	$(CXX) -shared -Wl,-soname -Wl,$(SONAME) $(filter %.o,$^) -o $@
+
+$(DEVLIB): $(DSO)
+	ln -sf "$(notdir $<)" $@
+
+$(SOLINK): $(DSO)
+	ln -sf "$(notdir $<)" $@
+
+.o/fooclient.o: src/fooclient.cpp $(HDRS)
+	$(CXX) $(INCLUDES) $(CXXFLAGS) -c -o $@ $<
+
+$(PROG): .o/fooclient.o $(DEVLIB) GNUMakefile
+	@mkdir -p "$(dir $@)"
+	$(CXX) $(CXXFLAGS) -o $@ $(filter %.o,$^) -Llib -lfoo -Wl,-rpath -Wl,\$$ORIGIN/../lib
+
+clean:
+	-@rm -f $(DSO)
+	-@rm -f $(SOLINK)
+	-@rm -f $(DEVLIB)
+	-@rm -f $(OBJ)
+	-@rm -f $(PROG) .o/fooclient.o
+
+.PHONY: all clean lib
