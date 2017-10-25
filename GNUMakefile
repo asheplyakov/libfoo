@@ -1,14 +1,15 @@
 
-SONAME := libfoo.so.0
-REVISION := 1
+# jump to 2 to match libtool's idea
+SONAME := libfoo.so.2
+REVISION := 0
 PATCHLEVEL := 0
 
 # Dynamical Shared Object, AKA shared library
-# libfoo.so.0.1.0
+# libfoo.so.2.0.0
 DSO := lib/$(SONAME).$(REVISION).$(PATCHLEVEL) 
 
 # for the run time linker (/lib64/ld-linux-x86-64.so.2):
-# libfoo.so.0 symlink to the aboive
+# libfoo.so.2 symlink to the aboive
 SOLINK = lib/$(SONAME)
 
 # for the compile time linker (/usr/bin/ld):
