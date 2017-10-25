@@ -52,7 +52,7 @@ add_library(foo SHARED ${libfoo_SOURCES})
 # https://community.kde.org/Policies/Binary_Compatibility_Issues_With_C%2B%2B#Note_about_ABI
 # to find out what causes (in)compatible C++ library ABI changes
 
-set(foo_SOVERSION 3) # SONAME: libfoo.so.3, to match libtool's idea
+set(foo_SOVERSION 4) # SONAME: libfoo.so.4, to match libtool's idea
 set(foo_REVISION 0)
 set(foo_PATCHLEVEL 0)
 set_target_properties(foo PROPERTIES
