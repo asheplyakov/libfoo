@@ -1,14 +1,14 @@
 
-SONAME := libfoo.so.3
+SONAME := libfoo.so.4
 REVISION := 0
 PATCHLEVEL := 0
 
 # Dynamical Shared Object, AKA shared library
-# libfoo.so.3.0.0
+# libfoo.so.4.0.0
 DSO := lib/$(SONAME).$(REVISION).$(PATCHLEVEL) 
 
 # for the run time linker (/lib64/ld-linux-x86-64.so.2):
-# libfoo.so.3 symlink to the aboive
+# libfoo.so.4 symlink to the aboive
 SOLINK = lib/$(SONAME)
 
 # for the compile time linker (/usr/bin/ld):
