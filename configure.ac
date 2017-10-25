@@ -22,8 +22,8 @@ AM_PROG_LIBTOOL
 #
 # See https://community.kde.org/Policies/Binary_Compatibility_Issues_With_C%2B%2B#Note_about_ABI
 # too find out what might cause a C++ library ABI changes
-libfoo_LT_CURRENT=1
-libfoo_LT_AGE=1
+libfoo_LT_CURRENT=2
+libfoo_LT_AGE=0
 libfoo_LT_REVISION=0
 libfoo_LT_VERSION="$libfoo_LT_CURRENT:$libfoo_LT_REVISION:$libfoo_LT_AGE"
 AC_SUBST(libfoo_LT_VERSION)
