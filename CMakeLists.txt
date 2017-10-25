@@ -53,7 +53,7 @@ add_library(foo SHARED ${libfoo_SOURCES})
 # to find out what causes (in)compatible C++ library ABI changes
 
 set(foo_SOVERSION 0) # SONAME: libfoo.so.0
-set(foo_REVISION 0)
+set(foo_REVISION 1)
 set(foo_PATCHLEVEL 0)
 set_target_properties(foo PROPERTIES
     SOVERSION ${foo_SOVERSION}
