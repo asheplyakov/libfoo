@@ -1,10 +1,10 @@
 
 SONAME := libfoo.so.0
-REVISION := 0
+REVISION := 1
 PATCHLEVEL := 0
 
 # Dynamical Shared Object, AKA shared library
-# libfoo.so.0.0.0
+# libfoo.so.0.1.0
 DSO := lib/$(SONAME).$(REVISION).$(PATCHLEVEL) 
 
 # for the run time linker (/lib64/ld-linux-x86-64.so.2):
